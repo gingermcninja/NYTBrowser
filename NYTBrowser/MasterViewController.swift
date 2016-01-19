@@ -25,9 +25,7 @@ class MasterViewController: UITableViewController {
             do {
                 let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
                 let results: NSArray = responseDictionary["results"] as! NSArray
-                let reports = try [Report].decode(results)
-                let firstReport: Report = reports.first!
-                self.objects = reports
+                self.objects = try [Report].decode(results)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
@@ -80,10 +78,12 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
 
         let object = objects[indexPath.row]
-        cell.textLabel!.text = object.title
+        cell.titleLabel.text = object.title
+        cell.abstractLabel.text = object.abstract
+        //cell.textLabel!.text = object.title
         return cell
     }
 
