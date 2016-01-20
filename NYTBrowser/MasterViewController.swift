@@ -18,23 +18,19 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let request: NSURLRequest = NSURLRequest(URL: NSURL(string: "http://api.nytimes.com/svc/news/v3/content/all?api-key=c99d5f66d65258b413eb1614d3bcaed9:6:74062624&time-period=48")!)
-        let session: NSURLSession = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+
+        let service:WebService = WebService()
+        service.getFromAPI { (apiData, apiError) -> Void in
             do {
-                let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
-                let results: NSArray = responseDictionary["results"] as! NSArray
-                self.objects = try [Report].decode(results)
+                self.objects = try [Report].decode(apiData!)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
-
             } catch let error as NSError {
                 print(error.description)
             }
         }
-        task.resume()
+
         // Do any additional setup after loading the view, typically from a nib.
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -83,6 +79,7 @@ class MasterViewController: UITableViewController {
         let object = objects[indexPath.row]
         cell.titleLabel.text = object.title
         cell.abstractLabel.text = object.abstract
+        cell.setThumbnailFromURL(NSURL(string: object.thumbnail_standard)!)
         //cell.textLabel!.text = object.title
         return cell
     }

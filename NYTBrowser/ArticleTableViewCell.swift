@@ -24,5 +24,20 @@ class ArticleTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func getThumbnailImage(url:NSURL, completion:((data:NSData?, response:NSURLResponse?, error:NSError?) -> Void )) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            completion(data:data, response: response, error: error)
+        }.resume()
+    }
+    
+    func setThumbnailFromURL(url:NSURL) {
+        getThumbnailImage(url) { (data, response, error) in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                guard let data = data where error == nil else {return}
+                self.thumbnailImg.image = UIImage(data: data)
+            })
+        }
+    }
 
 }
