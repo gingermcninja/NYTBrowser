@@ -34,7 +34,10 @@ class ArticleTableViewCell: UITableViewCell {
     func setThumbnailFromURL(url:NSURL) {
         getThumbnailImage(url) { (data, response, error) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                guard let data = data where error == nil else {return}
+                guard let data = data where error == nil else {
+                    self.thumbnailImg.image = UIImage(named: "NYT-logo")
+                    return
+                }
                 self.thumbnailImg.image = UIImage(data: data)
             })
         }

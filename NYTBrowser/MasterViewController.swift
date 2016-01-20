@@ -12,15 +12,29 @@ import Foundation
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
+    var sectionReports = ["books":[Report](),"blogs":[Report](),"technology":[Report]()]
+    var sections = ["books", "blogs", "technology"]
     var objects = [Report]()
     var data = NSMutableData()
-
+    @IBOutlet weak var segmentedControl:UISegmentedControl?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        reloadDataFromAPI()
+        // Do any additional setup after loading the view, typically from a nib.
+        if let split = self.splitViewController {
+            let controllers = split.viewControllers
+            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+    }
+    
+    @IBAction func sectionChanged() {
+        reloadDataFromAPI()
+    }
+    
+    func reloadDataFromAPI() {
         let service:WebService = WebService()
-        service.getFromAPI { (apiData, apiError) -> Void in
+        service.getFromAPI(self.sections[(self.segmentedControl?.selectedSegmentIndex)!]) { (apiData, apiError) -> Void in
             do {
                 self.objects = try [Report].decode(apiData!)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -29,12 +43,6 @@ class MasterViewController: UITableViewController {
             } catch let error as NSError {
                 print(error.description)
             }
-        }
-
-        // Do any additional setup after loading the view, typically from a nib.
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
 
@@ -80,6 +88,7 @@ class MasterViewController: UITableViewController {
         cell.titleLabel.text = object.title
         cell.abstractLabel.text = object.abstract
         cell.setThumbnailFromURL(NSURL(string: object.thumbnail_standard)!)
+        print(object.thumbnail_standard)
         //cell.textLabel!.text = object.title
         return cell
     }

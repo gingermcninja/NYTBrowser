@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -84,16 +85,41 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XL0-9s-YDv">
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XL0-9s-YDv">
                                     <rect key="frame" x="8" y="8" width="584" height="29"/>
                                     <segments>
-                                        <segment title="First"/>
-                                        <segment title="Second"/>
-                                        <segment title="Third"/>
+                                        <segment title="Books"/>
+                                        <segment title="Blogs"/>
+                                        <segment title="Technology"/>
                                     </segments>
+                                    <connections>
+                                        <action selector="sectionChanged" destination="7bK-jq-Zjz" eventType="valueChanged" id="Man-aw-VlB"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="XL0-9s-YDv" secondAttribute="trailing" constant="8" id="EPO-75-hVA"/>
+                                <constraint firstItem="XL0-9s-YDv" firstAttribute="leading" secondItem="fmr-Oc-Q9b" secondAttribute="leadingMargin" id="fIM-Gm-zSL"/>
+                                <constraint firstItem="XL0-9s-YDv" firstAttribute="top" secondItem="fmr-Oc-Q9b" secondAttribute="top" constant="8" id="gl2-BJ-ntw"/>
+                                <constraint firstItem="XL0-9s-YDv" firstAttribute="top" secondItem="fmr-Oc-Q9b" secondAttribute="topMargin" id="hdr-px-8Of"/>
+                                <constraint firstItem="XL0-9s-YDv" firstAttribute="trailing" secondItem="fmr-Oc-Q9b" secondAttribute="trailingMargin" id="rjK-DH-gW4"/>
+                                <constraint firstItem="XL0-9s-YDv" firstAttribute="leading" secondItem="fmr-Oc-Q9b" secondAttribute="leading" constant="8" id="szX-tS-Jby"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="EPO-75-hVA"/>
+                                    <exclude reference="gl2-BJ-ntw"/>
+                                    <exclude reference="szX-tS-Jby"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular">
+                                <mask key="constraints">
+                                    <include reference="EPO-75-hVA"/>
+                                    <include reference="gl2-BJ-ntw"/>
+                                    <include reference="szX-tS-Jby"/>
+                                </mask>
+                            </variation>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="139" id="WCw-Qf-5nD" customClass="ArticleTableViewCell" customModule="NYTBrowser" customModuleProvider="target">
@@ -103,22 +129,42 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="138"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPm-16-BfU">
-                                            <rect key="frame" x="8" y="8" width="120" height="122"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NYT-logo" translatesAutoresizingMaskIntoConstraints="NO" id="nPm-16-BfU">
+                                            <rect key="frame" x="8" y="8" width="75" height="75"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="HtH-8o-hfq"/>
+                                                <constraint firstAttribute="height" constant="75" id="YYx-6t-20K"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEg-Lk-7AP">
-                                            <rect key="frame" x="136" y="8" width="456" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEg-Lk-7AP">
+                                            <rect key="frame" x="91" y="8" width="501" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Abstract" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRV-lG-21b">
-                                            <rect key="frame" x="136" y="37" width="456" height="85"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abstract" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRV-lG-21b">
+                                            <rect key="frame" x="91" y="37" width="501" height="85"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="nPm-16-BfU" secondAttribute="leading" id="0oa-Ku-hWE"/>
+                                        <constraint firstItem="vEg-Lk-7AP" firstAttribute="leading" secondItem="nPm-16-BfU" secondAttribute="trailing" constant="8" symbolic="YES" id="3lf-Sz-eVm"/>
+                                        <constraint firstItem="gRV-lG-21b" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="57R-YL-Fdb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="gRV-lG-21b" secondAttribute="bottom" constant="8" id="7Vk-3x-1bs"/>
+                                        <constraint firstItem="nPm-16-BfU" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" id="FiT-Ff-B9E"/>
+                                        <constraint firstItem="gRV-lG-21b" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" constant="29" id="Ked-7Z-N5V"/>
+                                        <constraint firstItem="nPm-16-BfU" firstAttribute="top" secondItem="vEg-Lk-7AP" secondAttribute="top" id="cAW-IW-fhb"/>
+                                        <constraint firstAttribute="topMargin" secondItem="vEg-Lk-7AP" secondAttribute="top" id="dlA-bD-hgQ"/>
+                                        <constraint firstItem="gRV-lG-21b" firstAttribute="leading" secondItem="nPm-16-BfU" secondAttribute="trailing" constant="8" symbolic="YES" id="fXL-VR-DWm"/>
+                                        <constraint firstAttribute="topMargin" secondItem="nPm-16-BfU" secondAttribute="top" id="frt-mO-EXH"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vEg-Lk-7AP" secondAttribute="trailing" id="gDK-ll-1Xt"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gRV-lG-21b" secondAttribute="trailing" id="uJu-Gu-NpJ"/>
+                                        <constraint firstItem="nPm-16-BfU" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="yNa-Qj-6th"/>
+                                        <constraint firstItem="gRV-lG-21b" firstAttribute="trailing" secondItem="vEg-Lk-7AP" secondAttribute="trailing" id="zd7-g8-FM7"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -136,6 +182,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Articles" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="XL0-9s-YDv" id="Nog-5D-c4D"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,6 +206,9 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NYT-logo" width="144" height="144"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>
