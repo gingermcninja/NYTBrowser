@@ -20,11 +20,11 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadDataFromAPI()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        reloadDataFromAPI()
     }
     
     @IBAction func sectionChanged() {
@@ -37,6 +37,7 @@ class MasterViewController: UITableViewController {
             do {
                 self.objects = try [Report].decode(apiData!)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.detailViewController?.detailItem = self.objects.first
                     self.tableView.reloadData()
                 })
             } catch let error as NSError {
@@ -77,7 +78,6 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
         cell.titleLabel.text = object.title
         cell.publishDateLabel.text = dateFormatter.stringFromDate(object.published_date)
-        //cell.setThumbnailFromURL(NSURL(string: object.thumbnail_standard)!)
         cell.thumbnailImg.setImageFromURL(NSURL(string: object.thumbnail_standard)!)
         return cell
     }
