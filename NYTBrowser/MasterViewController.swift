@@ -12,7 +12,7 @@ import Foundation
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var sectionReports = ["books":[Report](),"blogs":[Report](),"technology":[Report]()]
+    //var sectionReports = ["books":[Report](),"blogs":[Report](),"technology":[Report]()]
     var sections = ["books", "blogs", "technology"]
     var objects = [Report]()
     var data = NSMutableData()
@@ -21,7 +21,6 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadDataFromAPI()
-        // Do any additional setup after loading the view, typically from a nib.
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -51,14 +50,6 @@ class MasterViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    // MARK: - Segues
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -70,9 +61,7 @@ class MasterViewController: UITableViewController {
             }
         }
     }
-
-    // MARK: - Table View
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -82,31 +71,20 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
-
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d yyyy"
         let object = objects[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
         cell.titleLabel.text = object.title
-        cell.abstractLabel.text = object.abstract
-        cell.setThumbnailFromURL(NSURL(string: object.thumbnail_standard)!)
-        print(object.thumbnail_standard)
-        //cell.textLabel!.text = object.title
+        cell.publishDateLabel.text = dateFormatter.stringFromDate(object.published_date)
+        //cell.setThumbnailFromURL(NSURL(string: object.thumbnail_standard)!)
+        cell.thumbnailImg.setImageFromURL(NSURL(string: object.thumbnail_standard)!)
         return cell
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return false
     }
-/*
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
-*/
 
 }
 

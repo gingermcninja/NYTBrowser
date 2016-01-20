@@ -9,9 +9,8 @@
 import UIKit
 
 class WebService: NSObject {
-    //var apiURL: String = "http://api.nytimes.com/svc/news/v3/content/all/arts?api-key=c99d5f66d65258b413eb1614d3bcaed9:6:74062624&time-period=48"
     var baseURL: String = "http://api.nytimes.com/svc/news/v3/content/all/"
-    var paramenters: String = "?api-key=c99d5f66d65258b413eb1614d3bcaed9:6:74062624&time-period=48"
+    var paramenters: String = "?api-key=c99d5f66d65258b413eb1614d3bcaed9:6:74062624&time-period=48&limit=20"
     
     func getFromAPI(section:String, completionHandler: (NSArray?, NSError?) -> Void) {
         let fullApiURL = NSURL(string:self.baseURL+section+self.paramenters)

@@ -12,7 +12,7 @@ class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var thumbnailImg: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var abstractLabel: UILabel!
+    @IBOutlet weak var publishDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +25,8 @@ class ArticleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    /*
     func getThumbnailImage(url:NSURL, completion:((data:NSData?, response:NSURLResponse?, error:NSError?) -> Void )) {
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
             completion(data:data, response: response, error: error)
@@ -42,5 +44,6 @@ class ArticleTableViewCell: UITableViewCell {
             })
         }
     }
+    */
 
 }

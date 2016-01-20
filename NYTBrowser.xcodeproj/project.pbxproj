@@ -16,6 +16,7 @@
 		5D3CB7691C4E69D3006EE318 /* Decodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3CB7681C4E69D3006EE318 /* Decodable.framework */; };
 		5D3CB76D1C4E80B1006EE318 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB76C1C4E80B1006EE318 /* Report.swift */; };
 		5D3CB7731C4EA8B5006EE318 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB7721C4EA8B5006EE318 /* ArticleTableViewCell.swift */; };
+		5D61D8091C4FF80A000E7F46 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61D8081C4FF80A000E7F46 /* UIImageView.swift */; };
 		6E562BE71C4EF68400EB662A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E562BE61C4EF68400EB662A /* WebService.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		5D3CB7681C4E69D3006EE318 /* Decodable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Decodable.framework; path = Carthage/Build/iOS/Decodable.framework; sourceTree = "<group>"; };
 		5D3CB76C1C4E80B1006EE318 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		5D3CB7721C4EA8B5006EE318 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		5D61D8081C4FF80A000E7F46 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		6E562BE61C4EF68400EB662A /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				5D3CB7561C4E687E006EE318 /* MasterViewController.swift */,
 				5D3CB7581C4E687E006EE318 /* DetailViewController.swift */,
 				5D3CB7721C4EA8B5006EE318 /* ArticleTableViewCell.swift */,
+				5D61D8081C4FF80A000E7F46 /* UIImageView.swift */,
 				5D3CB75A1C4E687E006EE318 /* Main.storyboard */,
 				5D3CB75D1C4E687E006EE318 /* Assets.xcassets */,
 				5D3CB75F1C4E687E006EE318 /* LaunchScreen.storyboard */,
@@ -183,6 +186,7 @@
 				5D3CB7551C4E687E006EE318 /* AppDelegate.swift in Sources */,
 				5D3CB7731C4EA8B5006EE318 /* ArticleTableViewCell.swift in Sources */,
 				5D3CB76D1C4E80B1006EE318 /* Report.swift in Sources */,
+				5D61D8091C4FF80A000E7F46 /* UIImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
