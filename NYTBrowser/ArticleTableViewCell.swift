@@ -16,6 +16,10 @@ class ArticleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        thumbnailImg.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        publishDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        configureConstraints()
         // Initialization code
     }
 
@@ -25,25 +29,13 @@ class ArticleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-    /*
-    func getThumbnailImage(url:NSURL, completion:((data:NSData?, response:NSURLResponse?, error:NSError?) -> Void )) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-            completion(data:data, response: response, error: error)
-        }.resume()
+    func configureConstraints() {
+        let views = ["thumb": thumbnailImg, "title":titleLabel, "published":publishDateLabel]
+        let horizontalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[thumb(75)]-8-[title]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let horizontalPublishedDateConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[thumb(75)]-8-[published]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[thumb(75)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalLabelConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[title(60)][published]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(horizontalTitleConstraints+horizontalPublishedDateConstraints+verticalThumbnailConstraints+verticalLabelConstraints)
     }
-    
-    func setThumbnailFromURL(url:NSURL) {
-        getThumbnailImage(url) { (data, response, error) in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                guard let data = data where error == nil else {
-                    self.thumbnailImg.image = UIImage(named: "NYT-logo")
-                    return
-                }
-                self.thumbnailImg.image = UIImage(data: data)
-            })
-        }
-    }
-    */
 
 }
