@@ -1,24 +1,27 @@
 //
-//  MasterViewController.swift
+//  ArticlesViewController.swift
 //  NYTBrowser
 //
-//  Created by Paul McGrath on 19/01/2016.
+//  Created by Paul McGrath on 21/01/2016.
 //  Copyright © 2016 Paul McGrath. All rights reserved.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
-class MasterViewController: UITableViewController {
-
+class ArticlesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView:UITableView?
+    @IBOutlet weak var segmentedControl:UISegmentedControl?
     var detailViewController: DetailViewController? = nil
     var sections = ["books", "blogs", "technology"]
     var objects = [Report]()
     var data = NSMutableData()
-    @IBOutlet weak var segmentedControl:UISegmentedControl?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView?.dataSource = self
+        self.tableView?.delegate = self
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -37,22 +40,17 @@ class MasterViewController: UITableViewController {
                 self.objects = try [Report].decode(apiData!)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.detailViewController?.detailItem = self.objects.first
-                    self.tableView.reloadData()
+                    self.tableView!.reloadData()
                 })
             } catch let error as NSError {
                 print(error.description)
             }
         }
     }
-
-    override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
-        super.viewWillAppear(animated)
-    }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
+            if let indexPath = self.tableView!.indexPathForSelectedRow {
                 let object = objects[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
@@ -62,28 +60,27 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE, MMMM d yyyy"
         let object = objects[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ArticleCell", forIndexPath: indexPath) as! ArticleTableViewCell
         cell.titleLabel.text = object.title
         cell.publishDateLabel.text = dateFormatter.stringFromDate(object.published_date)
         cell.thumbnailImg.setImageFromURL(NSURL(string: object.thumbnail_standard)!)
         return cell
     }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
 
 }
-

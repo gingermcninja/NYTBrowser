@@ -17,6 +17,7 @@
 		5D3CB76D1C4E80B1006EE318 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB76C1C4E80B1006EE318 /* Report.swift */; };
 		5D3CB7731C4EA8B5006EE318 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CB7721C4EA8B5006EE318 /* ArticleTableViewCell.swift */; };
 		5D61D8091C4FF80A000E7F46 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61D8081C4FF80A000E7F46 /* UIImageView.swift */; };
+		5D61D80B1C50DDD4000E7F46 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61D80A1C50DDD4000E7F46 /* ArticlesViewController.swift */; };
 		6E562BE71C4EF68400EB662A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E562BE61C4EF68400EB662A /* WebService.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		5D3CB76C1C4E80B1006EE318 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		5D3CB7721C4EA8B5006EE318 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		5D61D8081C4FF80A000E7F46 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		5D61D80A1C50DDD4000E7F46 /* ArticlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
 		6E562BE61C4EF68400EB662A /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				5D3CB75F1C4E687E006EE318 /* LaunchScreen.storyboard */,
 				5D3CB7621C4E687E006EE318 /* Info.plist */,
 				6E562BE61C4EF68400EB662A /* WebService.swift */,
+				5D61D80A1C50DDD4000E7F46 /* ArticlesViewController.swift */,
 			);
 			path = NYTBrowser;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				5D3CB7571C4E687E006EE318 /* MasterViewController.swift in Sources */,
 				5D3CB7551C4E687E006EE318 /* AppDelegate.swift in Sources */,
 				5D3CB7731C4EA8B5006EE318 /* ArticleTableViewCell.swift in Sources */,
+				5D61D80B1C50DDD4000E7F46 /* ArticlesViewController.swift in Sources */,
 				5D3CB76D1C4E80B1006EE318 /* Report.swift in Sources */,
 				5D61D8091C4FF80A000E7F46 /* UIImageView.swift in Sources */,
 			);
