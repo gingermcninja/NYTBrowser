@@ -31,10 +31,10 @@ class ArticleTableViewCell: UITableViewCell {
     
     func configureConstraints() {
         let views = ["thumb": thumbnailImg, "title":titleLabel, "published":publishDateLabel]
-        let horizontalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[thumb(75)]-8-[title]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let horizontalPublishedDateConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-8-[thumb(75)]-8-[published]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[thumb(75)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let verticalLabelConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[title(60)][published]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let horizontalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[thumb(75)]-[title]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let horizontalPublishedDateConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[thumb(75)]-[published]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[thumb]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalLabelConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[title(60)][published]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         NSLayoutConstraint.activateConstraints(horizontalTitleConstraints+horizontalPublishedDateConstraints+verticalThumbnailConstraints+verticalLabelConstraints)
     }
 

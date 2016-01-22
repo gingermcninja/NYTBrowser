@@ -136,16 +136,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NYT-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rDb-xj-uzF">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NYT-logo" translatesAutoresizingMaskIntoConstraints="NO" id="rDb-xj-uzF">
                                                     <rect key="frame" x="8" y="8" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" placeholder="YES" id="775-4l-QQ2"/>
+                                                        <constraint firstAttribute="width" constant="75" placeholder="YES" id="RjH-xc-ch2"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-E0-a0p">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-E0-a0p">
                                                     <rect key="frame" x="91" y="8" width="501" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="3Mj-s0-tL4"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="Publish date" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agx-2H-iCk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Publish date" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agx-2H-iCk">
                                                     <rect key="frame" x="91" y="68" width="501" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -157,6 +164,17 @@
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="PcF-E0-a0p" firstAttribute="leading" secondItem="rDb-xj-uzF" secondAttribute="trailing" constant="8" placeholder="YES" id="0aZ-kl-boN"/>
+                                                <constraint firstItem="Agx-2H-iCk" firstAttribute="top" secondItem="PcF-E0-a0p" secondAttribute="bottom" placeholder="YES" id="29s-xm-oQt"/>
+                                                <constraint firstAttribute="topMargin" secondItem="rDb-xj-uzF" secondAttribute="top" placeholder="YES" id="BvI-UE-FKM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Agx-2H-iCk" secondAttribute="bottom" constant="4" placeholder="YES" id="Vfe-Yk-kzS"/>
+                                                <constraint firstItem="Agx-2H-iCk" firstAttribute="leading" secondItem="rDb-xj-uzF" secondAttribute="trailing" constant="8" placeholder="YES" id="YEU-cR-GeM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Agx-2H-iCk" secondAttribute="trailing" placeholder="YES" id="Zbr-TS-Jrg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PcF-E0-a0p" secondAttribute="trailing" placeholder="YES" id="tgM-at-LTZ"/>
+                                                <constraint firstAttribute="topMargin" secondItem="PcF-E0-a0p" secondAttribute="top" placeholder="YES" id="x6H-7d-jAR"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="rDb-xj-uzF" secondAttribute="leading" placeholder="YES" id="yIH-LL-x6h"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="publishDateLabel" destination="Agx-2H-iCk" id="WTr-jl-ceT"/>
@@ -174,13 +192,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ugE-eD-h06" firstAttribute="top" secondItem="woF-zI-ve9" secondAttribute="bottom" constant="8" id="6qC-Ku-L4P"/>
-                            <constraint firstAttribute="trailing" secondItem="7Pv-Wn-wL4" secondAttribute="trailing" id="8dL-ZQ-oDY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ugE-eD-h06" secondAttribute="trailing" id="Zzg-ZJ-5w3"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ugE-eD-h06" secondAttribute="leading" id="enl-zl-epD"/>
-                            <constraint firstItem="7Pv-Wn-wL4" firstAttribute="top" secondItem="ugE-eD-h06" secondAttribute="bottom" constant="8" id="k6P-cw-0oS"/>
-                            <constraint firstItem="7Pv-Wn-wL4" firstAttribute="leading" secondItem="myn-PK-ODu" secondAttribute="leading" id="pEc-er-fYo"/>
-                            <constraint firstItem="7Pv-Wn-wL4" firstAttribute="bottom" secondItem="nMn-tr-DNb" secondAttribute="top" id="zg4-Yc-Rec"/>
+                            <constraint firstItem="7Pv-Wn-wL4" firstAttribute="top" secondItem="woF-zI-ve9" secondAttribute="bottom" constant="44" placeholder="YES" id="5ef-hd-XIr"/>
+                            <constraint firstItem="7Pv-Wn-wL4" firstAttribute="leading" secondItem="myn-PK-ODu" secondAttribute="leadingMargin" constant="-20" placeholder="YES" id="6Qf-PK-qsu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ugE-eD-h06" secondAttribute="trailing" placeholder="YES" id="HUl-tP-Brq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Pv-Wn-wL4" secondAttribute="trailing" constant="-20" placeholder="YES" id="aUt-C0-BfU"/>
+                            <constraint firstItem="ugE-eD-h06" firstAttribute="top" secondItem="woF-zI-ve9" secondAttribute="bottom" constant="8" placeholder="YES" id="lxE-Ya-ku8"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ugE-eD-h06" secondAttribute="leading" placeholder="YES" id="qIl-8X-rPX"/>
+                            <constraint firstItem="nMn-tr-DNb" firstAttribute="top" secondItem="ugE-eD-h06" secondAttribute="bottom" constant="500" placeholder="YES" id="wn4-S0-WfY"/>
+                            <constraint firstItem="nMn-tr-DNb" firstAttribute="top" secondItem="7Pv-Wn-wL4" secondAttribute="bottom" placeholder="YES" id="zJ2-KJ-a9a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Articles" id="gdz-Ek-Cxb">

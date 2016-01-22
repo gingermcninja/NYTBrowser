@@ -22,11 +22,25 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
+        self.tableView?.translatesAutoresizingMaskIntoConstraints = false
+        self.segmentedControl?.translatesAutoresizingMaskIntoConstraints = false
+        configureConstraints()
+        
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+
         reloadDataFromAPI()
+    }
+    
+    func configureConstraints() {
+        let views: [String: AnyObject] = ["topGuide": self.topLayoutGuide, "tabbar": segmentedControl!, "table": tableView!]
+        let horizontalTabBarConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[tabbar]-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let horizontalTableConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[table]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[table]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(horizontalTabBarConstraints+horizontalTableConstraints+verticalConstraints)
+
     }
     
     @IBAction func sectionChanged() {
