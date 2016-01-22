@@ -42,8 +42,8 @@ class DetailViewController: UIViewController {
         let views: [String: AnyObject] = ["topGuide": self.topLayoutGuide, "thumb": thumbnailImageView!, "title": titleLabel!, "abstract": abstractLabel]
         let horizontalTopConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[thumb(75)]-[title]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let horizontalBottomConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[abstract]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[thumb]-[abstract]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let verticalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[title]-[abstract]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[thumb]-[abstract]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[title]-[abstract]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         NSLayoutConstraint.activateConstraints(horizontalTopConstraints+horizontalBottomConstraints+verticalThumbnailConstraints+verticalTitleConstraints)
         
     }
