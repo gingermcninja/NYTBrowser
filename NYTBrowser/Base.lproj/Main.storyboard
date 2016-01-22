@@ -53,28 +53,28 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i8k-hM-EaB">
                                 <rect key="frame" x="20" y="80" width="75" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="Ylz-BY-Yop"/>
-                                    <constraint firstAttribute="width" constant="75" id="ZCM-ab-dBh"/>
+                                    <constraint firstAttribute="height" constant="75" placeholder="YES" id="Ylz-BY-Yop"/>
+                                    <constraint firstAttribute="width" constant="75" placeholder="YES" id="ZCM-ab-dBh"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="diX-a9-Nve" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="16" id="5Dy-0b-QPw"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0XM-y9-sOw" secondAttribute="bottom" id="9rb-34-l2s"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="diX-a9-Nve" secondAttribute="trailing" id="And-da-gr9"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="91" id="bdH-d0-WdJ"/>
-                            <constraint firstItem="diX-a9-Nve" firstAttribute="leading" secondItem="i8k-hM-EaB" secondAttribute="trailing" constant="15" id="n3E-ga-HRh"/>
-                            <constraint firstItem="i8k-hM-EaB" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="16" id="tCp-36-rvx"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="i8k-hM-EaB" secondAttribute="leading" id="xl4-36-GGs"/>
+                            <constraint firstItem="diX-a9-Nve" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="16" placeholder="YES" id="5Dy-0b-QPw"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0XM-y9-sOw" secondAttribute="bottom" placeholder="YES" id="9rb-34-l2s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="diX-a9-Nve" secondAttribute="trailing" placeholder="YES" id="And-da-gr9"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" placeholder="YES" id="Tsc-yG-G1q"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="91" placeholder="YES" id="bdH-d0-WdJ"/>
+                            <constraint firstItem="diX-a9-Nve" firstAttribute="leading" secondItem="i8k-hM-EaB" secondAttribute="trailing" constant="15" placeholder="YES" id="n3E-ga-HRh"/>
+                            <constraint firstItem="i8k-hM-EaB" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="16" placeholder="YES" id="tCp-36-rvx"/>
+                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" placeholder="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="i8k-hM-EaB" secondAttribute="leading" placeholder="YES" id="xl4-36-GGs"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="abstractLabel" destination="0XM-y9-sOw" id="vLg-Uw-d63"/>
                         <outlet property="thumbnailImageView" destination="i8k-hM-EaB" id="6wr-Zc-8Ke"/>
                         <outlet property="titleLabel" destination="diX-a9-Nve" id="njx-Fj-3Os"/>
                     </connections>
