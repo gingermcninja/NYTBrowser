@@ -48,7 +48,8 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
         let horizontalActivityConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[activity]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[table]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let verticalLoadingConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[loading]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        
+        self.loadingView?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[activity]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["activity": activity!]))
+        self.loadingView?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=0)-[activity]-(>=0)-|", options: .AlignAllCenterY, metrics: nil, views: ["activity": activity!]))
         
         //let verticalActivityConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[activity]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         NSLayoutConstraint.activateConstraints(horizontalTabBarConstraints+horizontalTableConstraints+horizontalLoadingConstraints+horizontalActivityConstraints)
