@@ -189,13 +189,30 @@
                                     <outlet property="delegate" destination="qig-iQ-dDv" id="ZN4-fX-rlo"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2L-5w-znA">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bf2-wF-3uw">
+                                        <rect key="frame" x="282" y="228" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.33000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="bf2-wF-3uw" firstAttribute="centerX" secondItem="w2L-5w-znA" secondAttribute="centerX" placeholder="YES" id="PJh-sY-1ho"/>
+                                    <constraint firstItem="bf2-wF-3uw" firstAttribute="centerY" secondItem="w2L-5w-znA" secondAttribute="centerY" placeholder="YES" id="trz-bC-Lw0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Pv-Wn-wL4" firstAttribute="top" secondItem="woF-zI-ve9" secondAttribute="bottom" constant="44" placeholder="YES" id="5ef-hd-XIr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="w2L-5w-znA" secondAttribute="trailing" constant="-20" placeholder="YES" id="6HB-7s-lQv"/>
                             <constraint firstItem="7Pv-Wn-wL4" firstAttribute="leading" secondItem="myn-PK-ODu" secondAttribute="leadingMargin" constant="-20" placeholder="YES" id="6Qf-PK-qsu"/>
+                            <constraint firstItem="w2L-5w-znA" firstAttribute="top" secondItem="ugE-eD-h06" secondAttribute="bottom" constant="8" placeholder="YES" id="Coj-jZ-cvb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ugE-eD-h06" secondAttribute="trailing" placeholder="YES" id="HUl-tP-Brq"/>
+                            <constraint firstItem="w2L-5w-znA" firstAttribute="leading" secondItem="myn-PK-ODu" secondAttribute="leadingMargin" constant="-20" placeholder="YES" id="Jet-Iu-A1d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Pv-Wn-wL4" secondAttribute="trailing" constant="-20" placeholder="YES" id="aUt-C0-BfU"/>
+                            <constraint firstItem="nMn-tr-DNb" firstAttribute="top" secondItem="w2L-5w-znA" secondAttribute="bottom" placeholder="YES" id="lD7-kB-qiO"/>
                             <constraint firstItem="ugE-eD-h06" firstAttribute="top" secondItem="woF-zI-ve9" secondAttribute="bottom" constant="8" placeholder="YES" id="lxE-Ya-ku8"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ugE-eD-h06" secondAttribute="leading" placeholder="YES" id="qIl-8X-rPX"/>
                             <constraint firstItem="nMn-tr-DNb" firstAttribute="top" secondItem="ugE-eD-h06" secondAttribute="bottom" constant="500" placeholder="YES" id="wn4-S0-WfY"/>
@@ -210,6 +227,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activity" destination="bf2-wF-3uw" id="KCz-ff-gpe"/>
+                        <outlet property="loadingView" destination="w2L-5w-znA" id="VhK-Im-YCH"/>
                         <outlet property="segmentedControl" destination="ugE-eD-h06" id="U8G-tP-W5e"/>
                         <outlet property="tableView" destination="7Pv-Wn-wL4" id="g39-td-t8n"/>
                     </connections>

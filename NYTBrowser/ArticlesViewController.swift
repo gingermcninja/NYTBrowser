@@ -13,6 +13,9 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView:UITableView?
     @IBOutlet weak var segmentedControl:UISegmentedControl?
+    @IBOutlet weak var loadingView:UIView?
+    @IBOutlet weak var activity:UIActivityIndicatorView?
+
     var detailViewController: DetailViewController? = nil
     var sections = ["books", "blogs", "technology"]
     var objects = [Report]()
@@ -20,10 +23,13 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadingView?.hidden = true
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.translatesAutoresizingMaskIntoConstraints = false
         self.segmentedControl?.translatesAutoresizingMaskIntoConstraints = false
+        self.loadingView?.translatesAutoresizingMaskIntoConstraints = false
+        self.activity?.translatesAutoresizingMaskIntoConstraints = false
         configureConstraints()
         
         if let split = self.splitViewController {
@@ -35,11 +41,18 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func configureConstraints() {
-        let views: [String: AnyObject] = ["topGuide": self.topLayoutGuide, "tabbar": segmentedControl!, "table": tableView!]
+        let views: [String: AnyObject] = ["topGuide": self.topLayoutGuide, "tabbar": segmentedControl!, "table": tableView!, "loading": loadingView!, "activity": activity!]
         let horizontalTabBarConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[tabbar]-|", options: .AlignAllBaseline, metrics: nil, views: views)
         let horizontalTableConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[table]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let horizontalLoadingConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[loading]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let horizontalActivityConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[activity]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[table]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        NSLayoutConstraint.activateConstraints(horizontalTabBarConstraints+horizontalTableConstraints+verticalConstraints)
+        let verticalLoadingConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[loading]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        
+        
+        //let verticalActivityConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[tabbar]-[activity]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(horizontalTabBarConstraints+horizontalTableConstraints+horizontalLoadingConstraints+horizontalActivityConstraints)
+        NSLayoutConstraint.activateConstraints(verticalConstraints+verticalLoadingConstraints)//+verticalActivityConstraints)
 
     }
     
@@ -49,12 +62,14 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func reloadDataFromAPI() {
         let service:WebService = WebService()
+        loadingView?.hidden = false
         service.getFromAPI(self.sections[(self.segmentedControl?.selectedSegmentIndex)!]) { (apiData, apiError) -> Void in
             do {
                 self.objects = try [Report].decode(apiData!)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.detailViewController?.detailItem = self.objects.first
                     self.tableView!.reloadData()
+                    self.loadingView?.hidden = true
                 })
             } catch let error as NSError {
                 print(error.description)
