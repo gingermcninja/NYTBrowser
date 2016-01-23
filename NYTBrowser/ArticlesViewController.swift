@@ -36,7 +36,9 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-
+        let section:String = self.sections[(self.segmentedControl?.selectedSegmentIndex)!]
+        displayData(WebService().getStoredResults(section))
+        
         reloadDataFromAPI()
     }
     
@@ -63,21 +65,27 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
         let service:WebService = WebService()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         loadingView?.hidden = false
-        service.getFromAPI(self.sections[(self.segmentedControl?.selectedSegmentIndex)!]) { (apiData, apiError) -> Void in
-            do {
-                self.objects = try [Report].decode(apiData!)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.detailViewController?.detailItem = self.objects.first
-                    self.tableView!.reloadData()
-                    self.loadingView?.hidden = true
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                })
-            } catch let error as NSError {
+        let section:String = self.sections[(self.segmentedControl?.selectedSegmentIndex)!]
+        service.getFromAPI(section) { (apiData, apiError) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.loadingView?.hidden = true
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                print(error.description)
-            }
+            })
+            self.displayData(apiData!)
         }
+    }
+    
+    func displayData(dataArray:NSArray) {
+        do {
+            self.objects = try [Report].decode(dataArray)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.detailViewController?.detailItem = self.objects.first
+                self.tableView!.reloadData()
+            })
+        } catch let error as NSError {
+            print(error.description)
+        }
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

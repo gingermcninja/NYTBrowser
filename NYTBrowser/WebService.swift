@@ -20,6 +20,7 @@ class WebService: NSObject {
             do {
                 let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
                 let results: NSArray = responseDictionary["results"] as! NSArray
+                NSUserDefaults.standardUserDefaults().setValue(data, forKey: section)
                 completionHandler(results,error)
             } catch let error as NSError {
                 print(error.description)
@@ -27,6 +28,19 @@ class WebService: NSObject {
             }
         }
         task.resume()
-
     }
+    
+    func getStoredResults(section:String) -> NSArray {
+        guard let data:NSData = NSUserDefaults.standardUserDefaults().valueForKey(section) as? NSData else {return NSArray()}
+        do {
+            let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
+            let results: NSArray = responseDictionary["results"] as! NSArray
+            return results
+        } catch let error as NSError {
+            print(error.description)
+            return NSArray()
+        }
+    }
+    
+    
 }
