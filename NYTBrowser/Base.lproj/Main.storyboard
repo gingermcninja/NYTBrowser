@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="155" width="560" height="0.0"/>
+                                <rect key="frame" x="20" y="190" width="560" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,24 +57,35 @@
                                     <constraint firstAttribute="width" constant="75" placeholder="YES" id="ZCM-ab-dBh"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Giq-qC-0TO">
+                                <rect key="frame" x="20" y="161" width="0.0" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="diX-a9-Nve" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="16" placeholder="YES" id="5Dy-0b-QPw"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Giq-qC-0TO" secondAttribute="leading" placeholder="YES" id="9qi-Om-zXv"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0XM-y9-sOw" secondAttribute="bottom" placeholder="YES" id="9rb-34-l2s"/>
                             <constraint firstAttribute="trailingMargin" secondItem="diX-a9-Nve" secondAttribute="trailing" placeholder="YES" id="And-da-gr9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Giq-qC-0TO" secondAttribute="trailing" constant="560" placeholder="YES" id="Ksw-bU-nK3"/>
+                            <constraint firstItem="Giq-qC-0TO" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="97" placeholder="YES" id="Tai-Zd-h7n"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" placeholder="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="91" placeholder="YES" id="bdH-d0-WdJ"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="126" placeholder="YES" id="bdH-d0-WdJ"/>
                             <constraint firstItem="diX-a9-Nve" firstAttribute="leading" secondItem="i8k-hM-EaB" secondAttribute="trailing" constant="15" placeholder="YES" id="n3E-ga-HRh"/>
                             <constraint firstItem="i8k-hM-EaB" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="16" placeholder="YES" id="tCp-36-rvx"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" placeholder="YES" id="tHV-ZD-HQj"/>
                             <constraint firstAttribute="leadingMargin" secondItem="i8k-hM-EaB" secondAttribute="leading" placeholder="YES" id="xl4-36-GGs"/>
+                            <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="Giq-qC-0TO" secondAttribute="bottom" constant="8" placeholder="YES" id="xmD-RI-Ku4"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="abstractLabel" destination="0XM-y9-sOw" id="vLg-Uw-d63"/>
+                        <outlet property="publishedLabel" destination="Giq-qC-0TO" id="ux2-pY-8Ao"/>
                         <outlet property="thumbnailImageView" destination="i8k-hM-EaB" id="6wr-Zc-8Ke"/>
                         <outlet property="titleLabel" destination="diX-a9-Nve" id="njx-Fj-3Os"/>
                     </connections>

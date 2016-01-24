@@ -38,7 +38,6 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         let section:String = self.sections[(self.segmentedControl?.selectedSegmentIndex)!]
         displayData(WebService().getStoredResults(section))
-        
         reloadDataFromAPI()
     }
     
