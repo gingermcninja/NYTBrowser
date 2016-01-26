@@ -17,14 +17,17 @@ class WebService: NSObject {
         let request: NSURLRequest = NSURLRequest(URL: fullApiURL!)
         let session: NSURLSession = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            do {
-                let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
-                let results: NSArray = responseDictionary["results"] as! NSArray
-                NSUserDefaults.standardUserDefaults().setValue(data, forKey: section)
-                completionHandler(results,error)
-            } catch let error as NSError {
-                print(error.description)
+            if(data == nil) {
                 completionHandler(nil,error)
+            } else {
+                do {
+                    let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
+                    let results: NSArray = responseDictionary["results"] as! NSArray
+                    NSUserDefaults.standardUserDefaults().setValue(data, forKey: section)
+                    completionHandler(results,error)
+                } catch let error as NSError {
+                    completionHandler(nil,error)
+                }
             }
         }
         task.resume()
@@ -36,8 +39,7 @@ class WebService: NSObject {
             let responseDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
             let results: NSArray = responseDictionary["results"] as! NSArray
             return results
-        } catch let error as NSError {
-            print(error.description)
+        } catch _ as NSError {
             return NSArray()
         }
     }

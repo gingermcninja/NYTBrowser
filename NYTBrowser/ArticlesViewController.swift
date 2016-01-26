@@ -70,7 +70,15 @@ class ArticlesViewController: UIViewController, UITableViewDelegate, UITableView
                 self.loadingView?.hidden = true
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             })
-            self.displayData(apiData!)
+            if(apiError != nil) {
+                let alert = UIAlertController(title: "Error", message: apiError?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.presentViewController(alert, animated: true, completion: nil)
+                })
+            } else {
+                self.displayData(apiData!)
+            }
         }
     }
     

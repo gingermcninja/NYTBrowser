@@ -17,10 +17,18 @@ public struct Report {
     public let created_date: NSDate
     public let updated_date: NSDate
     public let published_date: NSDate
+    public let url: String
+    public let multimedia: Array<Multimedia>
 }
 
 extension Report: Decodable {
     public static func decode(j: AnyObject) throws -> Report {
+        var media:Array<Multimedia>
+        do {
+            try media = j => "multimedia" as [Multimedia]!
+        } catch {
+            media = Array<Multimedia>()
+        }
         return try Report(
             title: j => "title",
             subheadline: j => "subheadline",
@@ -28,7 +36,9 @@ extension Report: Decodable {
             thumbnail_standard: j => "thumbnail_standard",
             created_date: decodeDateFromString(j => "created_date"),
             updated_date: decodeDateFromString(j => "updated_date"),
-            published_date: decodeDateFromString(j => "published_date")
+            published_date: decodeDateFromString(j => "published_date"),
+            url: j => "url",
+            multimedia: media
         )
     }
     

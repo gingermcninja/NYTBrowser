@@ -14,6 +14,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var clickForMoreBtn: UIButton!
 
     var detailItem: Report? {
         didSet {
@@ -37,20 +39,38 @@ class DetailViewController: UIViewController {
             if let imageView = self.thumbnailImageView {
                 imageView.setImageFromURL(NSURL(string: detail.thumbnail_standard)!)
             }
+            if let imageView = self.mainImageView {
+                if self.detailItem?.multimedia.count > 0 {
+                    for media:Multimedia in (self.detailItem?.multimedia)! {
+                        if(media.type == "image" && media.format != "Standard Thumbnail") {
+                            imageView.setImageFromURL(NSURL(string: media.url)!)
+                            break
+                        }
+                    }
+                }
+            }
         }
     }
     
     func configureConstraints() {
-        let views: [String: AnyObject] = ["topGuide": self.topLayoutGuide, "thumb": thumbnailImageView!, "title": titleLabel!, "abstract": abstractLabel, "published":publishedLabel]
+        let views: [String: AnyObject] = ["topGuide": self.topLayoutGuide, "thumb": thumbnailImageView!, "title": titleLabel!, "abstract": abstractLabel, "published":publishedLabel, "mainImage":mainImageView, "moreBtn":clickForMoreBtn]
         let horizontalTopConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[thumb(75)]-[title]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let horizontalBottomConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[abstract]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let horizontalPublishedDateConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[published]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let horizontalMainImageConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[mainImage]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let horizontalMoreBtnConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[moreBtn]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+
         
-        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[thumb]-|published|-[abstract]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let verticalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[title]-|published|-[abstract]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalThumbnailConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[thumb]-[published]-[mainImage]-[abstract]-[moreBtn]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let verticalTitleConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[topGuide]-[title]-[published]-[mainImage]-[abstract]-[moreBtn]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
-        NSLayoutConstraint.activateConstraints(horizontalTopConstraints+horizontalBottomConstraints+horizontalPublishedDateConstraints+verticalThumbnailConstraints+verticalTitleConstraints)
+        NSLayoutConstraint.activateConstraints(horizontalTopConstraints+horizontalBottomConstraints+horizontalPublishedDateConstraints+horizontalMainImageConstraints+horizontalMoreBtnConstraints)
+        NSLayoutConstraint.activateConstraints(verticalThumbnailConstraints+verticalTitleConstraints)
         
+    }
+    
+    @IBAction func clickForMore() {
+        UIApplication.sharedApplication().openURL(NSURL(string:(self.detailItem?.url)!)!)
     }
 
     override func viewDidLoad() {
@@ -58,6 +78,9 @@ class DetailViewController: UIViewController {
         self.abstractLabel?.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
         self.thumbnailImageView?.translatesAutoresizingMaskIntoConstraints = false
+        self.publishedLabel?.translatesAutoresizingMaskIntoConstraints = false
+        self.mainImageView?.translatesAutoresizingMaskIntoConstraints = false
+        self.clickForMoreBtn.translatesAutoresizingMaskIntoConstraints = false
         self.configureConstraints()
         self.configureView()
     }
